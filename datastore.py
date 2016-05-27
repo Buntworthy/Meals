@@ -13,6 +13,7 @@ class DataStoreDict:
             return None
 
     def add_entry(self, title, tags):
+        # TODO check badly formatted entry
         index = self.add_title(title, tags)
         # Use all the title words as tags too
         full_tags = ' '.join((tags, title)).split()
@@ -20,6 +21,7 @@ class DataStoreDict:
         self.update_index(index, title.split(), self.title_index)
 
     def delete_entry(self, index):
+        # TODO check unrecognised index
         del self.main_index[index]
 
     def add_title(self, title, tags):
@@ -55,12 +57,20 @@ class DataStoreDict:
             raise e
 
     def add_tag(self, index, tags):
+
+        if not index in self.main_index:
+            raise ValueError('Unrecognised index')
+
         self.update_index(index, tags, self.tag_index)
         (index, title, original_tags) = self.main_index[index]
         original_tags = ' '.join((original_tags, ' '.join(tags)))
         self.main_index[index] = (index, title, original_tags)
 
     def remove_tag(self, index, tags):
+
+        if not index in self.main_index:
+            raise ValueError('Unrecognised index')
+
         (index, title, original_tags) = self.main_index[index]
         for tag in tags:
             self.tag_index[tag].remove(index)
@@ -87,3 +97,5 @@ class DataStoreDict:
             return set.intersection(*list_of_sets)
         else:
             return []
+
+    # TODO display all method

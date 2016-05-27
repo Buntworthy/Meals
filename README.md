@@ -64,8 +64,8 @@ Results:
 [2] - Some other meal
 [5] - A different aubergine meal
 
->>> edit 1 tag pasta dinner
->>> edit 1 tag -r pasta
+>>> add_tag 1 pasta dinner
+>>> remove_tag 1 pasta
 ```
 
 Only adding and removing tags is available. To change a title, you have to

@@ -69,3 +69,5 @@ def test_edit_remove_tag():
 
     result = data.get_entry(1)
     assert result[2] == 'tag2'
+
+# TODO test badly formed entries

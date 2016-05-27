@@ -41,6 +41,7 @@ class MealIndex(cmd.Cmd):
 
     def do_search(self, arg):
         'Search the index by tag: search pastry'
+        # TODO display all if no search terms
         search_terms = arg.lower().split()
         self.current_search = self.data.search_tags(search_terms)
 
@@ -68,12 +69,28 @@ class MealIndex(cmd.Cmd):
                        '{:.70}'.format(title)
         print(display_line)
 
+    def do_add_tag(self, arg):
+        self.update_tags(arg, self.data.add_tag)
+
+    def do_remove_tag(self, arg):
+        self.update_tags(arg, self.data.remove_tag)
+
     def do_close(self, arg):
         self.data.save_data()
         return True
 
     def do_EOF(self, line):
         return True
+
+    @staticmethod
+    def update_tags(arg, method):
+        args = arg.split()
+        index = int(args[0])
+        tags = args[1:]
+        try:
+            method(index, tags)
+        except ValueError:
+            print('Index not recognised')
 
 
 def main():
