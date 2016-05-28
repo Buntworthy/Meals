@@ -42,6 +42,9 @@ class MealIndex(cmd.Cmd):
     def do_search(self, arg):
         'Search the index by tag: search pastry'
         # TODO display all if no search terms
+        # TODO search for plurals
+        # TODO display by index
+        # TODO sort by number? Or random?
         search_terms = arg.lower().split()
         self.current_search = self.data.search_tags(search_terms)
 
@@ -64,6 +67,7 @@ class MealIndex(cmd.Cmd):
     # TODO other editing operations
 
     def display(self, result):
+        # TODO add padding for larger numbers
         (index, title, tags) = result
         display_line = '[{}]'.format(index) + ' - ' + \
                        '{:.70}'.format(title)
