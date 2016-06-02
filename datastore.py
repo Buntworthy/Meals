@@ -20,8 +20,12 @@ class DataStoreDict:
         self.update_index(index, full_tags, self.tag_index)
         self.update_index(index, title.split(), self.title_index)
 
+    def check_index(self, index):
+        if index not in self.main_index:
+            raise ValueError('Unrecognised index')
+
     def delete_entry(self, index):
-        # TODO check unrecognised index
+        self.check_index(index)
         del self.main_index[index]
 
     def add_title(self, title, tags):
@@ -57,20 +61,14 @@ class DataStoreDict:
             raise e
 
     def add_tag(self, index, tags):
-
-        if not index in self.main_index:
-            raise ValueError('Unrecognised index')
-
+        self.check_index(index)
         self.update_index(index, tags, self.tag_index)
         (index, title, original_tags) = self.main_index[index]
         original_tags = ' '.join((original_tags, ' '.join(tags)))
         self.main_index[index] = (index, title, original_tags)
 
     def remove_tag(self, index, tags):
-
-        if not index in self.main_index:
-            raise ValueError('Unrecognised index')
-
+        self.check_index(index)
         (index, title, original_tags) = self.main_index[index]
         for tag in tags:
             self.tag_index[tag].remove(index)
@@ -98,4 +96,4 @@ class DataStoreDict:
         else:
             return []
 
-    # TODO display all method
+            # TODO display all method

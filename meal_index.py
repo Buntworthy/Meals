@@ -94,7 +94,7 @@ class MealIndex(cmd.Cmd):
         try:
             method(index, tags)
         except ValueError:
-            print('Index not recognised')
+            print('I don''t recognise that item, please try again.')
 
 
 def main():
