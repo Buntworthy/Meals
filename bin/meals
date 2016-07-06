@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+
+from meals import meal_index
+
+meal_index.main()

@@ -1,28 +1,5 @@
 import cmd
-
-
-# Meal idea index
-
-# add "Root vegetable crumble" swede pumpkin roux vegetarian cheddar nuts winter
-# search "vegetable crumble" # Search in the title
-# search vegetarian winter # AND search in tags
-# tag 1 new_tag # Add a new tag to a search result
-
-# Titles stored in a dict e.g.
-#   1: (1, "First title", [tag1 tag2 tag3])
-#   2: (2, "Second title", [tag1 tag3])
-#   count: 2
-
-# Tags stored in a dict, e.g.
-#   tag1: [1, 3, 6]
-#   tag2: [3, 4]
-#   tag3: [1, 3, 5, 6]
-
-# Title words also stored in a dict
-#   title_word1: [1, 6]
-#   title_word2: [1, 4]
-#   title_word3: [3, 5, 6]
-from datastore import DataStoreDict
+from meals.datastore import DataStoreDict
 
 
 class MealIndex(cmd.Cmd):

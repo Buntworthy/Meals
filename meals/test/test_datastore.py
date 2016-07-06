@@ -1,4 +1,4 @@
-from datastore import DataStoreDict
+from meals.datastore import DataStoreDict
 
 
 def setup():
